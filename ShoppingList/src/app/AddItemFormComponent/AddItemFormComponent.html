@@ -1,0 +1,58 @@
+<!-- Angular директива, которая вызывает метод onSubmit() при отправке формы (Enter или кнопка "Добавить"). -->
+<form (ngSubmit)="onSubmit()" class="add-item-form"> 
+
+   <!-- Группа поля ввода названия продукта -->
+  <div class="form-group">  
+    <input 
+      type="text" 
+      [(ngModel)]="productName" 
+      name="productName" 
+      placeholder="Название продукта" 
+      required
+      class="product-input" 
+    >
+  </div>
+
+ <!-- Блок управления количеством -->
+  
+  <div class="amount-controls">
+    <button 
+      type="button"  
+      (click)="decrementAmount()"  
+      class="amount-btn"
+      aria-label="Уменьшить количество"
+    >
+      -
+    </button>
+
+  <!-- отображение текущего количества -->
+    <span class="amount-display">{{ amount }}</span>
+
+    <button 
+      type="button" 
+      (click)="incrementAmount()"
+      class="amount-btn"
+      aria-label="Увеличить количество"
+    >
+    +
+    </button>
+  </div>
+
+
+  <div class="form-group">
+    <label>Категория:</label>
+    <select [(ngModel)]="category" name="category" class="form-select">
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+  </div>
+  
+  <!-- Кнопка "Добавить" (изначльно дезактивирована) -->
+  <button 
+    type="submit" 
+    class="add-btn"
+    [disabled]="!productName.trim()" 
+  >
+    Добавить
+  </button>
+  
+</form>

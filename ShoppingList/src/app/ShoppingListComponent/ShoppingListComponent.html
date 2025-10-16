@@ -1,0 +1,86 @@
+<div class="shopping-list">
+  <h1>Список покупок</h1>
+  
+  <!-- Статистика -->
+  <div class="stats">
+    <div class="stat-item">
+      <span class="stat-label">Всего:</span>
+      <span class="stat-value">{{ stats.total }}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Куплено:</span>
+      <span class="stat-value purchased">{{ stats.purchased }}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Еще не куплено:</span>
+      <span class="stat-value not-purchased">{{ stats.notPurchased }}</span>
+    </div>
+  </div>
+
+  <!-- Панель поиска и сортировки -->
+  <div class="filters-panel">
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="searchRequest"
+        (input)="onSearchChange()"
+        placeholder="Search by name..."
+        class="search-input"
+      >
+    </div>
+
+    <div class="sort-controls">
+      <label for="sortSelect">Сортировать по:</label>
+      <select
+        id="sortSelect"
+        [(ngModel)]="sortOption"
+        (change)="onSortChange()"
+        class="sort-select"
+      >
+        <option value="None">Не отсортировано</option>
+        <option value="Name">Имя</option>
+        <option value="Status">Состояние</option>
+        <option value="Category">Категория</option>
+      </select>
+    </div>
+
+    <button 
+      (click)="resetFilters()" 
+      class="reset-btn"
+      [disabled]="!searchRequest && sortOption === 'None'"
+    >
+      Обновить фильтры
+    </button>
+  </div>
+
+  <!-- Информация о фильтрах -->
+  <div *ngIf="searchRequest || sortOption !== 'None'" class="filter-info">
+    <span *ngIf="searchRequest">Поиск: "{{ searchRequest }}" • </span>
+    <span *ngIf="sortOption !== 'None'">Отсортировано по: {{ getSortLabel(sortOption) }} • </span>
+    Показано {{ filteredItems.length }} из {{ shoppingItems.length }} продуктов
+  </div>
+
+  <!-- Форма добавления -->
+  <app-add-item-form (addItem)="onAddItem($event)"></app-add-item-form>
+
+  <!-- Список товаров -->
+  <div claыуss="items-list">
+    <app-shopping-item 
+      *ngFor="let item of filteredItems"
+      [item]="item"
+      (remove)="onRemoveItem($event)"
+      (togglePurchased)="onTogglePurchased($event)"
+      (update)="onUpdateItem($event)"
+    ></app-shopping-item>
+    
+    <div *ngIf="filteredItems.length === 0" class="empty-state">
+      <div *ngIf="searchRequest">
+        Ни одного предмета по запросу "{{ searchRequest }}". 
+        <button (click)="resetFilters()" class="link-btn">Очистить поиск</button>
+      </div>
+      <div *ngIf="!searchRequest">
+        Пока ни одного предмета в списке!
+      </div>
+    </div>
+  </div>
+</div>

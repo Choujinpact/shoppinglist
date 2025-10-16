@@ -1,0 +1,106 @@
+/* Панель фильтров */
+.filters-panel {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 20px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+
+/* Поле поиска */
+.search-box {
+  position: relative;
+  flex: 0 1 auto;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Контролы сортировки */
+.sort-controls 
+{
+  flex: 0 1 auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-select {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  font-size: 14px;
+}
+
+/* Кнопка сброса */
+.reset-btn {
+  padding: 10px 15px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.reset-btn:hover:not(:disabled) {
+  background: #5a6268;
+}
+
+.reset-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Информация о фильтрах */
+.filter-info {
+  margin: 10px 0;
+  padding: 10px;
+  background: #e9ecef;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #495057;
+}
+
+
+/* Кнопка-ссылка */
+.link-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.link-btn:hover {
+  color: #0056b3;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .filters-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-box {
+    min-width: auto;
+  }
+  
+  .sort-controls {
+    justify-content: space-between;
+  }
+}

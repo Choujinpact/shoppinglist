@@ -1,0 +1,86 @@
+
+/*flex - заставляет поле ввода растягиваться на всё свободное пространство*/
+
+.form-group { 
+  flex: 1;
+  font-size: large;
+}
+
+.add-item-form 
+{
+  display: flex;
+  gap: 12px;                /*Расстояние между элементами */
+  align-items: center;
+  padding: 20px;
+  background-color: rgb(74, 106, 212);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 24px;
+}
+
+.product-input 
+{
+  width: 89%;
+  padding: 12px;
+  border: 2px solid #616161;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.product-input:focus {
+  outline: none;
+  border-color: #68705f;
+}
+
+.amount-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.amount-btn {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #6e6c6e;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.add-btn {
+  padding: 12px 24px;
+  background: #28a745;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-btn:hover:not(:disabled) {
+  background: #218838;
+}
+
+.add-btn:disabled {
+  background: #000000;
+  cursor: not-allowed;
+}
+
+.form-select
+{
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+}

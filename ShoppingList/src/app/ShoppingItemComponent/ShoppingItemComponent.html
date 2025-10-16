@@ -1,0 +1,53 @@
+<div class="shopping-item" [class.purchased]="item.purchased">
+  <div *ngIf="!isEditing" class="item-content">
+    <div class="item-main">
+      <span class="item-name">{{ item.name }}</span>
+      <span class="item-amount"> x{{ item.amount }}</span>
+    </div>
+    
+    <div class="item-details">
+      <span class="item-category">{{ item.category }}</span>
+      <span *ngIf="item.note" class="item-note">- {{ item.note }}</span>
+    </div>
+
+    <div class="item-actions">
+      <button (click)="onTogglePurchased()" class="btn-toggle">
+        {{ item.purchased ? 'Вернуть' : 'Купить' }}
+      </button>
+      <button (click)="startEditing()" class="btn-edit">Редактировать</button>
+      <button (click)="onRemove()" class="btn-close" title="Удалить">×</button>
+    </div>
+  </div>
+
+  <div *ngIf="isEditing" class="edit-form">
+    <input 
+      type="text" 
+      [(ngModel)]="editName" 
+      class="edit-input"
+      placeholder="Product name"
+    >
+    
+    <div class="edit-controls">
+      <div class="amount-controls">
+        <button type="button" (click)="decrementEditAmount()" class="amount-btn">-</button>
+        <span class="amount-display">{{ editAmount }}</span>
+        <button type="button" (click)="incrementEditAmount()" class="amount-btn">+</button>
+      </div>
+
+      <select [(ngModel)]="editCategory" class="category-select">
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+    </div>
+
+    <textarea 
+      [(ngModel)]="editNote" 
+      class="edit-textarea"
+      placeholder="Optional note"
+    ></textarea>
+
+    <div class="edit-actions">
+      <button (click)="saveEditing()" class="btn-save">Сохранить</button>
+      <button (click)="cancelEditing()" class="btn-cancel">Отмена</button>
+    </div>
+  </div>
+</div>
